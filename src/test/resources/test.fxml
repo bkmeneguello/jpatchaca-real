@@ -1,0 +1,11 @@
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Scene xmlns:fx="http://javafx.com/fxml" width="480" height="320">
+	<VBox>
+		<TextField fx:id="label" text="#{input.text}"/>
+		<TextField fx:id="input" />
+	</VBox>
+</Scene>

@@ -1,0 +1,24 @@
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.*?>
+
+<HBox fx:id="parent"
+	xmlns:fx="http://javafx.com/fxml"
+	fx:controller="com.meneguello.EditWorklogController">
+	<VBox spacing="6">
+		<GridPane VBox.vgrow="ALWAYS">
+			<Label fx:id="author" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+			<Label text="%issue.tabs.worklog.start-date" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+			<TextField fx:id="startDate" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+			<Label text="%issue.tabs.worklog.time-spent" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+			<TextField fx:id="timeSpent" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+			<Label text="%issue.tabs.worklog.comment" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+			<TextArea fx:id="comment" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+		</GridPane>
+	</VBox>
+	<VBox>
+		<Button text="V" onAction="#confirm"/>
+		<Button text="X" onAction="#cancel"/>
+	</VBox>
+</HBox>

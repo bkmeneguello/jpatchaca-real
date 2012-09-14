@@ -1,0 +1,79 @@
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.*?>
+<?import com.meneguello.*?>
+<?import com.meneguello.jira.*?>
+
+<Scene xmlns:fx="http://javafx.com/fxml"
+		fx:controller="com.meneguello.MainController"
+		stylesheets="/style.css"
+		width="1024"
+		height="768">
+	<fx:define>
+		<fx:include source="options.fxml" fx:id="options"/>
+		<FXCollections fx:factory="observableArrayList" fx:id="commentList"/>
+		<FXCollections fx:factory="observableArrayList" fx:id="worklogList"/>
+		<QueueObserver fx:id="filtersQueueObserver" queue="filters"/>
+		<QueueObserver fx:id="issueListQueueObserver" queue="issueList"/>
+		<QueueObserver fx:id="issueDetailsQueueObserver" queue="issueDetails"/>
+	</fx:define>
+    <BorderPane top="$options">
+    	<center>
+    		<SplitPane dividerPositions="0.3">
+	    		<VBox>
+	    			<ComboBox fx:id="filters" items="$filterList" maxWidth="Infinity">
+	    				<contextMenu>
+	    					<ContextMenu>
+	    						<items>
+		    						<MenuItem text="%filters.refresh" onAction="#loadIssueSets"/>
+	    						</items>
+	    					</ContextMenu>
+	    				</contextMenu>
+	    			</ComboBox>
+		    		<ListView fx:id="issues" VBox.vgrow="ALWAYS">
+		    			<items>
+			    			<FXCollections fx:factory="observableArrayList"/>
+		    			</items>
+		    		</ListView>
+	    		</VBox>
+	    		<VBox>
+	    			<HBox alignment="CENTER_LEFT">
+	    				<Label text="%search-issue" labelFor="$issueKey" HBox.hgrow="ALWAYS"/>
+	    				<TextField fx:id="issueKey"/>
+	    				<Button onAction="#searchIssue"/>
+	    				<Region HBox.hgrow="ALWAYS"/>
+	    				<ToggleButton fx:id="favorite" onAction="#toggleFavorite"/>
+	    			</HBox>
+		    		<ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+		    			<VBox>
+							<Label fx:id="issueSummary" style="-fx-font-size: 24px"/>
+							<Label fx:id="issueDescription"/>
+							<TabPane>
+								<Tab text="%issue.tabs.comments" closable="false">
+									<ListView fx:id="comments" items="$commentList" VBox.vgrow="ALWAYS"/>
+								</Tab>
+								<Tab text="%issue.tabs.worklog" closable="false">
+									<VBox>
+										<ToolBar>
+											<Button fx:id="addWorklog" text="%issue.tabs.worklog.new" onAction="#addWorklog"/>
+										</ToolBar>
+										<ListView fx:id="worklogs" items="$worklogList" VBox.vgrow="ALWAYS" editable="true"/>
+									</VBox>
+								</Tab>
+								<Tab text="%issue.tabs.attachemnts" closable="false"/>
+							</TabPane>
+						</VBox>
+		    		</ScrollPane>
+	    		</VBox>
+    		</SplitPane>
+    	</center>
+    	<bottom>
+    		<HBox prefHeight="24" alignment="CENTER_RIGHT">
+    			<ProgressIndicator fx:id="status" maxHeight="16"/>
+    		</HBox>    		
+    	</bottom>
+    </BorderPane>
+</Scene>

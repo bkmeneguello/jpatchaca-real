@@ -1,0 +1,15 @@
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.*?>
+
+<VBox fx:id="parent"
+	xmlns:fx="http://javafx.com/fxml"
+	fx:controller="com.meneguello.ViewWorklogController">
+	<HBox spacing="6">
+		<Label fx:id="author"/>
+		<Label fx:id="startDate"/>
+	</HBox>
+	<Label fx:id="timeSpent"/>
+	<Label fx:id="comment"/>
+</VBox>
