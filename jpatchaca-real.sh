@@ -24,4 +24,4 @@ fi
 export PATH="$BASE/jre7/bin":$PATH
 export JAVA_HOME="$BASE/jre7"
 
-java -splash:"$BASE/splash.png" -jar "$BASE/jpatchaca-real.jar"
+java -splash:"$BASE/splash.png" -classpath "$BASE/jre7/lib/jfxrt.jar:$BASE/jpatchaca-real.jar" com.meneguello.JPatchacaReal
